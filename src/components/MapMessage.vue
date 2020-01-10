@@ -130,4 +130,7 @@ export default {
   overflow-y: auto;
   height: 370px;
 }
+.msgBox::-webkit-scrollbar {
+  display: none;
+}
 </style>

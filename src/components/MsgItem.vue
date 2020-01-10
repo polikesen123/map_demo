@@ -76,7 +76,7 @@ export default {
     li {
       display: flex;
       flex-direction: column;
-      width: 146px;
+      width: 154px;
       text-align: center;
       line-height: 25px;
       margin-bottom: 10px;

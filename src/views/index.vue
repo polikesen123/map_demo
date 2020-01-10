@@ -3,13 +3,12 @@
     <div class="handelBox">
       <div class="topTitle">
         <h3>极海零售API示例</h3>
-        <p class="clf"><i class="lf"><b class="el-icon-bell"></b> 在地图上单击即可进行数据统计</i> <i class="rf">API文档</i></p>
+        <p class="clf"><i class="lf"><b class="el-icon-message-solid"></b> 在地图上单击即可进行数据统计</i> <i class="rf">API文档</i></p>
       </div>
       <m-picker></m-picker>
       <m-msg></m-msg>
     </div>
     <div id="map"></div>
-
     <pre id="info"></pre>
   </div>
 </template>
