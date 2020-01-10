@@ -3,57 +3,10 @@
     <div class="handelBox">
       <div class="topTitle">
         <h3>极海零售API示例</h3>
+        <p class="clf"><i class="lf"><b class="el-icon-bell"></b> 在地图上单击即可进行数据统计</i> <i class="rf">API文档</i></p>
       </div>
-      <div class="citySelBox">
-        <span>选择城市</span>
-        <el-select v-model="value" placeholder="请选择" clearable>
-          <el-option
-            v-for="item in citys"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          ></el-option>
-        </el-select>
-      </div>
-      <div class="brandSelBox">
-        <span>选择品牌</span>
-        <el-select v-model="value1" placeholder="请选择" clearable>
-          <el-option
-            v-for="item in brands"
-            :key="item.value"
-            :label="item.label"
-            :value="item.value"
-          ></el-option>
-        </el-select>
-      </div>
-      <div class="rankComputed">
-        <span>计算范围</span>
-        <el-radio v-model="radio" label="1">缓冲区</el-radio>
-        <el-radio v-model="radio" label="2">等时圈</el-radio>
-      </div>
-      <div class="changeTab">
-        <div class="bufferDis" v-show="showDisTab">
-          <span>缓冲距离</span>
-          <el-input placeholder="请输入统计距离" v-model.number="distance">
-            <template slot="append">米</template>
-          </el-input>
-        </div>
-        <div class="isochronusCircle" v-show="showCirTab">
-          <div class="tripMode">
-            <span>出行方式</span>
-            <el-radio-group v-model="radio2">
-              <el-radio :label="3">步行</el-radio>
-              <el-radio :label="6">骑车</el-radio>
-              <el-radio :label="9">驾车</el-radio>
-            </el-radio-group>
-            <span>出行时间</span>
-            <el-input placeholder="请输入统计距离" v-model.number="time">
-              <template slot="append">分钟</template>
-            </el-input>
-          </div>
-        </div>
-        <div>{{urlData}}</div>
-      </div>
+      <m-picker></m-picker>
+      <m-msg></m-msg>
     </div>
     <div id="map"></div>
 
@@ -63,61 +16,20 @@
 <script>
 import mapboxgl from "mapbox-gl";
 import MapboxLanguage from "@mapbox/mapbox-gl-language";
-// import { NullIslandLayer } from "@/api/mapInit.js";
+import ContentPicker from '../components/ContentPicker';
+import MapMsg from '../components/MapMessage'
 import http from "@/api/http.js";
 export default {
   name: "mapbox_test",
   data() {
-    return {
-      citys: [
-        {
-          value: "beijing",
-          label: "北京"
-        }
-      ],
-      brands: [
-        {
-          value: "starbucks",
-          label: "星巴克"
-        },
-        {
-          value: "kfc",
-          label: "肯德基"
-        },
-        {
-          value: "pizza-hut",
-          label: "必胜客"
-        },
-        {
-          value: "mcdonalds",
-          label: "麦当劳"
-        }
-      ],
-      value: "北京",
-      value1: "星巴克",
-      radio: "1",
-      distance: "1000",
-      radio2: 1,
-      time: 15
-    };
+    return {}
   },
   mounted() {
     this.init();
   },
-  computed: {
-    urlData() {
-      let dataName = {};
-      dataName.city = this.value;
-      dataName.brand = this.value1;
-      dataName.distance = this.distance;
-      return dataName;
-    },
-    showDisTab() {
-      return Number(this.radio) === 1;
-    },
-    showCirTab() {
-      return Number(this.radio) !== 1;
-    }
+  components:{
+    "m-picker":ContentPicker,
+    "m-msg":MapMsg
   },
   methods: {
     init() {
@@ -248,8 +160,24 @@ body {
   width: 350px;
   height: 650px;
   background: #fff;
-  padding: 20px;
+  padding: 10px;
   box-sizing: border-box;
   z-index: 20;
+  .topTitle{
+    padding: 10px;
+    box-sizing: border-box;
+    h3{
+      font-weight: normal;
+    }
+    p{
+      line-height: 20px;
+      margin-top: 10px;
+      color: #409EFF;
+    }
+    i{
+      font-style: normal;
+      font-size: 12px;
+    }
+  }
 }
 </style>
